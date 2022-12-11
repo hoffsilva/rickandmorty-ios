@@ -11,16 +11,16 @@ import RxSwift
 import RxCocoa
 import RxReachability
 
-struct DetailRickAndMortyCharcterViewModelInput {
+struct RxDetailRickAndMortyCharcterViewModelInput {
     let trigger: Driver<String>
 }
 
-struct DetailRickAndMortyCharcterViewModelOutput {
+struct RxDetailRickAndMortyCharcterViewModelOutput {
     let locationName: Driver<String>
     let locationType: Driver<String>
 }
 
-class DetailRickAndMortyCharcterViewModel {
+class RxDetailRickAndMortyCharcterViewModel {
     
     private var repository: ListCharacterRepository
     
@@ -28,7 +28,7 @@ class DetailRickAndMortyCharcterViewModel {
         self.repository = repository
     }
     
-    func transform(input: DetailRickAndMortyCharcterViewModelInput) -> DetailRickAndMortyCharcterViewModelOutput {
+    func transform(input: RxDetailRickAndMortyCharcterViewModelInput) -> RxDetailRickAndMortyCharcterViewModelOutput {
         
         let location = input.trigger.flatMap { locationID -> Driver<CharacterLocation> in
             return self.repository.detailLocation(by: locationID)
@@ -46,7 +46,7 @@ class DetailRickAndMortyCharcterViewModel {
             location.type
         }
         
-        return DetailRickAndMortyCharcterViewModelOutput(
+        return RxDetailRickAndMortyCharcterViewModelOutput(
             locationName: name,
             locationType: type
         )
