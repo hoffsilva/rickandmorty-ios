@@ -28,7 +28,7 @@ class ListOfRickAndMortyCharacterView: UICollectionViewController, Storyboarded 
     let backgroundIamgeView = UIImageView(image: #imageLiteral(resourceName: "error_view"))
     let retryButton = UIButton()
     
-    var viewModel: ListCharacterViewModel!
+    var viewModel: RxListCharacterViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class ListOfRickAndMortyCharacterView: UICollectionViewController, Storyboarded 
     
     private func setupBindings() {
         
-        let input = ListCharacterViewModelInput(
+        let input = RxListCharacterViewModelInput(
             triggerAllCharacters: trigger.asSignal(onErrorJustReturn: 1),
             searchString: self.searchController.searchBar.rx.text.orEmpty.distinctUntilChanged().asDriver(onErrorJustReturn: ""),
             reloadSearch: self.reloadSearch.startWith(false).asDriver(onErrorDriveWith: .empty())

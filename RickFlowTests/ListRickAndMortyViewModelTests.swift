@@ -17,7 +17,7 @@ import RxBlocking
 
 class ListRickAndMortyViewModelTests: XCTestCase {
     
-    var viewmodel: ListCharacterViewModel!
+    var viewmodel: RxListCharacterViewModel!
     var repository: ListCharacterRepository!
     var service: ListCharacterService!
     var provider: MoyaProvider<ListCharacterRouter>!
@@ -27,7 +27,7 @@ class ListRickAndMortyViewModelTests: XCTestCase {
         self.provider = MoyaProvider<ListCharacterRouter>(stubClosure: MoyaProvider.immediatelyStub)
         self.service = ListCharacterServiceImpl(provider: self.provider)
         self.repository = ListCharacterRepositoryImpl(service: self.service)
-        self.viewmodel = ListCharacterViewModel(repository: self.repository)
+        self.viewmodel = RxListCharacterViewModel(repository: self.repository)
     }
 
     override func tearDown() {
@@ -40,7 +40,7 @@ class ListRickAndMortyViewModelTests: XCTestCase {
         
         let trigger = testScheduler.createHotObservable([next(100, 1)]).asSignal(onErrorJustReturn: 1)
         let searchString = testScheduler.createHotObservable([next(100, "")]).asDriver(onErrorDriveWith: .empty())
-        let input = ListCharacterViewModelInput(triggerAllCharacters: trigger, searchString: searchString)
+        let input = RxListCharacterViewModelInput(triggerAllCharacters: trigger, searchString: searchString)
         
         let output = viewmodel.transform(input: input)
         
@@ -64,7 +64,7 @@ class ListRickAndMortyViewModelTests: XCTestCase {
         
         let trigger = testScheduler.createHotObservable([next(100, 1)]).asSignal(onErrorJustReturn: 1)
         let searchString = testScheduler.createHotObservable([next(100, "Bet")]).asDriver(onErrorDriveWith: .empty())
-        let input = ListCharacterViewModelInput(triggerAllCharacters: trigger, searchString: searchString)
+        let input = RxListCharacterViewModelInput(triggerAllCharacters: trigger, searchString: searchString)
         
         let output = viewmodel.transform(input: input)
         

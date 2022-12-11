@@ -11,19 +11,19 @@ import RxSwiftUtilities
 import RxCocoa
 import RxReachability
 
-struct ListCharacterViewModelInput {
+struct RxListCharacterViewModelInput {
     let triggerAllCharacters: Signal<Int>
     let searchString: Driver<String>
     let reloadSearch: Driver<Bool>
 }
 
-struct ListCharacterViewModelOutput {
+struct RxListCharacterViewModelOutput {
     let listOfCharacter: Driver<[CharacterViewData]>
     let totalOfItems: Driver<Int>
     let shouldStopRefresh: Driver<Bool>
 }
 
-class ListCharacterViewModel {
+class RxListCharacterViewModel {
     
     private var repository: ListCharacterRepository
     private var listOfCharacterViewData = [CharacterViewData]()
@@ -35,7 +35,7 @@ class ListCharacterViewModel {
         self.repository = repository
     }
     
-    func transform(input: ListCharacterViewModelInput) -> ListCharacterViewModelOutput {
+    func transform(input: RxListCharacterViewModelInput) -> RxListCharacterViewModelOutput {
         
         let activityIndicator = ActivityIndicator()
         let isRefreshing = activityIndicator.asDriver()
@@ -90,7 +90,7 @@ class ListCharacterViewModel {
                 !$0
         }
         
-        return ListCharacterViewModelOutput(
+        return RxListCharacterViewModelOutput(
             listOfCharacter: listOfCharacter,
             totalOfItems: totalOfItems.asDriver(onErrorJustReturn: 0),
             shouldStopRefresh: shouldStopRefresh

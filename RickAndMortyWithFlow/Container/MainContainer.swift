@@ -66,8 +66,8 @@ extension MainContainer {
     
     private func registerViewModel() {
         
-        self.container.register(ListCharacterViewModel.self) { resolver in
-            ListCharacterViewModel(
+        self.container.register(RxListCharacterViewModel.self) { resolver in
+            RxListCharacterViewModel(
                 repository: resolver.resolve(ListCharacterRepository.self)!
             )
         }

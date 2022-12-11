@@ -15,7 +15,7 @@ extension SwinjectStoryboard {
         let mainContainer = MainContainer.sharedContainer.container
      
         defaultContainer.storyboardInitCompleted(ListOfRickAndMortyCharacterView.self) { (_, controller) in
-            controller.viewModel = mainContainer.resolve(ListCharacterViewModel.self)!
+            controller.viewModel = mainContainer.resolve(RxListCharacterViewModel.self)!
         }
         
         defaultContainer.storyboardInitCompleted(DetailOfRickAndMortyCharacterView.self) { (_, controller) in
