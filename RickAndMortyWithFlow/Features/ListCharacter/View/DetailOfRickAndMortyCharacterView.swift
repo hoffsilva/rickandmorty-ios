@@ -21,7 +21,7 @@ class DetailOfRickAndMortyCharacterView: UITableViewController, Storyboarded {
     @IBOutlet weak var characterLocationType: UILabel!
     
     var character: CharacterViewData!
-    var viewmodel: DetailRickAndMortyCharcterViewModel!
+    var viewmodel: RxDetailRickAndMortyCharcterViewModel!
     
     private var trigger = PublishSubject<String>()
     private var bag = DisposeBag()
@@ -42,7 +42,7 @@ class DetailOfRickAndMortyCharacterView: UITableViewController, Storyboarded {
     
     private func setupBindings(using locationID: String) {
         
-        let input = DetailRickAndMortyCharcterViewModelInput(
+        let input = RxDetailRickAndMortyCharcterViewModelInput(
             trigger: self.trigger.startWith(locationID).asDriver(onErrorDriveWith: .empty())
         )
         

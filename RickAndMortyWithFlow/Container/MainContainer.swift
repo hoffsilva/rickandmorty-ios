@@ -72,8 +72,8 @@ extension MainContainer {
             )
         }
         
-        self.container.register(DetailRickAndMortyCharcterViewModel.self) { resolver in
-            DetailRickAndMortyCharcterViewModel(
+        self.container.register(RxDetailRickAndMortyCharcterViewModel.self) { resolver in
+            RxDetailRickAndMortyCharcterViewModel(
                 repository: resolver.resolve(ListCharacterRepository.self)!
             )
         }

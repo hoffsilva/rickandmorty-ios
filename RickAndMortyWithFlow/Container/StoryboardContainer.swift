@@ -19,7 +19,7 @@ extension SwinjectStoryboard {
         }
         
         defaultContainer.storyboardInitCompleted(DetailOfRickAndMortyCharacterView.self) { (_, controller) in
-            controller.viewmodel = mainContainer.resolve(DetailRickAndMortyCharcterViewModel.self)!
+            controller.viewmodel = mainContainer.resolve(RxDetailRickAndMortyCharcterViewModel.self)!
         }
     
     }
