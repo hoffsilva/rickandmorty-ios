@@ -1,5 +1,5 @@
 //
-//  ListCharacterService.swift
+//  RxListCharacterService.swift
 //  RickAndMortyWithFlow
 //
 //  Created by Hoff Henry Pereira da Silva on 07/02/20.
@@ -9,7 +9,7 @@
 import Moya
 import RxSwift
 
-protocol ListCharacterService {
+protocol RxListCharacterService {
     func findCharacter(by characterName: String, in page: String) -> Single<Response>
     func detailLocation(by id: String) -> Single<Response>
 }

@@ -19,15 +19,15 @@ class DetailRickAndMoryCharecterViewModel: XCTestCase {
     
 
     var viewmodel: DetailRickAndMortyCharcterViewModel!
-    var repository: ListCharacterRepository!
-    var service: ListCharacterService!
+    var repository: RxListCharacterRepository!
+    var service: RxListCharacterService!
     var provider: MoyaProvider<ListCharacterRouter>!
     var bag = DisposeBag()
     
     override func setUp() {
         self.provider = MoyaProvider<ListCharacterRouter>(stubClosure: MoyaProvider.immediatelyStub)
-        self.service = ListCharacterServiceImpl(provider: self.provider)
-        self.repository = ListCharacterRepositoryImpl(service: self.service)
+        self.service = RxListCharacterServiceImpl(provider: self.provider)
+        self.repository = RxListCharacterRepositoryImpl(service: self.service)
         self.viewmodel = DetailRickAndMortyCharcterViewModel(repository: self.repository)
     }
 

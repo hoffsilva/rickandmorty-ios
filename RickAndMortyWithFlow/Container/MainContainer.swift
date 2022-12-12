@@ -33,9 +33,9 @@ extension MainContainer {
     
     private func registerService() {
         
-        self.container.register(ListCharacterService.self) { resolver in
+        self.container.register(RxListCharacterService.self) { resolver in
             let provider = MoyaProvider<ListCharacterRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
-            return ListCharacterServiceImpl(
+            return RxListCharacterServiceImpl(
                 provider: provider
             )
         }
@@ -44,9 +44,9 @@ extension MainContainer {
     
     private func registerRepository() {
         
-        self.container.register(ListCharacterRepository.self) { resolver in
-            ListCharacterRepositoryImpl(
-                service: resolver.resolve(ListCharacterService.self)!
+        self.container.register(RxListCharacterRepository.self) { resolver in
+            RxListCharacterRepositoryImpl(
+                service: resolver.resolve(RxListCharacterService.self)!
             )
         }
         
@@ -68,13 +68,13 @@ extension MainContainer {
         
         self.container.register(RxListCharacterViewModel.self) { resolver in
             RxListCharacterViewModel(
-                repository: resolver.resolve(ListCharacterRepository.self)!
+                repository: resolver.resolve(RxListCharacterRepository.self)!
             )
         }
         
         self.container.register(RxDetailRickAndMortyCharcterViewModel.self) { resolver in
             RxDetailRickAndMortyCharcterViewModel(
-                repository: resolver.resolve(ListCharacterRepository.self)!
+                repository: resolver.resolve(RxListCharacterRepository.self)!
             )
         }
         

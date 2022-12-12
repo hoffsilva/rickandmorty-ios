@@ -18,15 +18,15 @@ import RxBlocking
 class ListRickAndMortyViewModelTests: XCTestCase {
     
     var viewmodel: RxListCharacterViewModel!
-    var repository: ListCharacterRepository!
-    var service: ListCharacterService!
+    var repository: RxListCharacterRepository!
+    var service: RxListCharacterService!
     var provider: MoyaProvider<ListCharacterRouter>!
     var bag = DisposeBag()
     
     override func setUp() {
         self.provider = MoyaProvider<ListCharacterRouter>(stubClosure: MoyaProvider.immediatelyStub)
-        self.service = ListCharacterServiceImpl(provider: self.provider)
-        self.repository = ListCharacterRepositoryImpl(service: self.service)
+        self.service = RxListCharacterServiceImpl(provider: self.provider)
+        self.repository = RxListCharacterRepositoryImpl(service: self.service)
         self.viewmodel = RxListCharacterViewModel(repository: self.repository)
     }
 

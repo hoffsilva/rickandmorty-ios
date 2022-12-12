@@ -1,5 +1,5 @@
 //
-//  ListCharacterServiceImpl.swift
+//  RxListCharacterServiceImpl.swift
 //  RickAndMortyWithFlow
 //
 //  Created by Hoff Henry Pereira da Silva on 07/02/20.
@@ -9,7 +9,7 @@
 import Moya
 import RxSwift
 
-class ListCharacterServiceImpl: ListCharacterService {
+class RxListCharacterServiceImpl: RxListCharacterService {
     
     let provider: MoyaProvider<ListCharacterRouter>
     

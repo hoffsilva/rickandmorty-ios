@@ -22,16 +22,16 @@ struct RxDetailRickAndMortyCharcterViewModelOutput {
 
 class RxDetailRickAndMortyCharcterViewModel {
     
-    private var repository: ListCharacterRepository
+    private var repository: RxListCharacterRepository
     
-    init(repository: ListCharacterRepository) {
+    init(repository: RxListCharacterRepository) {
         self.repository = repository
     }
     
     func transform(input: RxDetailRickAndMortyCharcterViewModelInput) -> RxDetailRickAndMortyCharcterViewModelOutput {
         
         let location = input.trigger.flatMap { locationID -> Driver<CharacterLocation> in
-            return self.repository.detailLocation(by: locationID)
+            return self.repository.detailLocationRx(by: locationID)
                 .retry(30)
                 .map { characterLocation in
                     characterLocation

@@ -2,37 +2,28 @@
 //  ListCharacterViewModel.swift
 //  RickAndMortyWithFlow
 //
-//  Created by Hoff Henry Pereira da Silva on 08/02/20.
-//  Copyright © 2020 Hoff Henry Pereira da Silva. All rights reserved.
+//  Created by Hoff Silva on 2022-12-11.
+//  Copyright © 2022 Hoff Henry Pereira da Silva. All rights reserved.
 //
 
-import RxSwift
-import RxSwiftUtilities
-import RxCocoa
-import RxReachability
+import Foundation
 
-struct RxListCharacterViewModelInput {
-    let triggerAllCharacters: Signal<Int>
-    let searchString: Driver<String>
-    let reloadSearch: Driver<Bool>
-}
-
-struct RxListCharacterViewModelOutput {
-    let listOfCharacter: Driver<[CharacterViewData]>
-    let totalOfItems: Driver<Int>
-    let shouldStopRefresh: Driver<Bool>
-}
-
-class RxListCharacterViewModel {
+class ListCharacterViewModel {
     
-    private var repository: ListCharacterRepository
+    private var repository: RxListCharacterRepository
     private var listOfCharacterViewData = [CharacterViewData]()
     private var totalOfPages = 1
-    private var totalOfItems = PublishSubject<Int>()
+    private var totalOfItems = 0
     
     
-    init(repository: ListCharacterRepository) {
+    init(repository: RxListCharacterRepository) {
         self.repository = repository
+    }
+    
+    func loadCharacters() {
+        
+        self.repository.
+        
     }
     
     func transform(input: RxListCharacterViewModelInput) -> RxListCharacterViewModelOutput {
